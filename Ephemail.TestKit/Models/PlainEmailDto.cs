@@ -11,6 +11,6 @@ namespace Ephemail.TestKit.Models
         public string? Subject { get; set; }
         public DateTime ReceivedAt { get; set; }
         public string BodyText { get; set; } = string.Empty;
-        public List<LinkDto> Links { get; set; } = new();
+        public List<LinkDto> Links { get; set; } = new(); 
     }
 }
