@@ -1,4 +1,5 @@
-﻿using Ephemail.TestKit.Models;
+﻿using Ephemail.TestKit.Exeptions;
+using Ephemail.TestKit.Models;
 using Ephemail.TestKit.Templates;
 using System;
 using System.Linq;
@@ -26,30 +27,25 @@ namespace Ephemail.TestKit.Core
         public EmailApiBuilder Expect(EmailTemplate template, int timeoutSeconds = 30)
         {
             if (string.IsNullOrWhiteSpace(_emailAddress))
-                throw new InvalidOperationException("Email address must be set. Call UseEmail(...) first.");
+                throw EphemailException.MissingEmailAddress();
 
-            _fetchedEmail = _client
-                .GetEmailBySubjectAsync(_emailAddress, template.Subject, timeoutSeconds)
-                .GetAwaiter().GetResult();
+            _fetchedEmail = _client.GetEmailBySubjectAsync(_emailAddress, template.Subject, timeoutSeconds)
+                                   .GetAwaiter().GetResult();
 
             if (_fetchedEmail == null)
             {
-                var allSubjects = _client
-                    .GetAllSubjectsAsync(_emailAddress)
-                    .GetAwaiter().GetResult();
-
-                string msg = allSubjects.Any()
-                    ? $"Expected subject not found: \"{template.Subject}\". Available subjects:\n- {string.Join("\n- ", allSubjects)}"
-                    : "No emails found at all.";
-
-                throw new Exception(msg);
+                var subjects = _client.GetAllSubjectsAsync(_emailAddress).GetAwaiter().GetResult();
+                throw EphemailException.SubjectNotFound(template.Subject, subjects);
             }
 
-            if (!template.Matches(_fetchedEmail.BodyText ?? string.Empty, out var mismatch))
-                throw new Exception(mismatch ?? "Email body does not match expected template.");
+            string bodyText = _fetchedEmail.BodyText ?? string.Empty;
+
+            if (!template.Matches(bodyText, out string? mismatchLine))
+                throw EphemailException.TemplateMismatch(mismatchLine ?? "Unknown line", bodyText);
 
             return this;
         }
+
 
         // Будущие методы:
         public EmailApiBuilder Extract(out string result, string regexPattern)
