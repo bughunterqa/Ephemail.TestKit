@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 		<LangVersion>latest</LangVersion>
 
-		<Version>1.1.0</Version>
+		<Version>1.1.1</Version>
 		<PackageId>EphemailClient</PackageId>
 		<Authors>Vladyslav Rybalka</Authors>
 		<Company>Ephemail</Company>

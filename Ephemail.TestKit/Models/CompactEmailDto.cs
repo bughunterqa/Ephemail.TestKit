@@ -10,5 +10,6 @@ namespace Ephemail.TestKit.Models
         public string? Subject { get; set; }
         public DateTime ReceivedAt { get; set; }
         public string Preview { get; set; } = string.Empty;
+
     }
 }
