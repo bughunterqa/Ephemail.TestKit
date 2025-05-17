@@ -13,19 +13,20 @@ namespace Ephemail.TestKit.Templates
             ExpectedLines = lines;
         }
 
-        public bool Matches(string actualBody, out string? mismatch)
+        public bool Matches(string actualBody, out string? missingLine)
         {
             foreach (var expected in ExpectedLines)
             {
                 if (!actualBody.Contains(expected, StringComparison.OrdinalIgnoreCase))
                 {
-                    mismatch = $"Expected line not found: \"{expected}\"";
+                    missingLine = expected;
                     return false;
                 }
             }
 
-            mismatch = null;
+            missingLine = null;
             return true;
         }
+
     }
 }

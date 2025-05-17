@@ -11,14 +11,15 @@
                 : "❌ No emails found at all.";
 
         public static string TemplateMismatch(string missingLine, string bodyText) => $"""
-        ❌ Email body does not match the expected template.
-        👉 Expected line not found: "{missingLine}"
+            ❌ Email body does not match the expected template.
+            👉 Expected line not found: "{missingLine}"
 
-        🔍 Actual Email Body:
-        ------------------------------
-        {bodyText.Trim()}
-        ------------------------------
-        """;
+            🔍 Actual Email Body:
+            ------------------------------
+            {bodyText.Trim()}
+            ------------------------------
+            """;
+
 
         public static string EmailNotFetched =>
             "Email has not been fetched. Call Expect(...) first.";

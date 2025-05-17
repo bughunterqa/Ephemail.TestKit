@@ -13,6 +13,7 @@
         public static EphemailException TemplateMismatch(string line, string body) =>
             new(EmailErrors.TemplateMismatch(line, body));
 
+
         public static EphemailException EmailNotFetched() =>
             new(EmailErrors.EmailNotFetched);
 
