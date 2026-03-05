@@ -20,6 +20,7 @@ namespace Ephemail.TestKit.Core
             };
         }
 
+
         public async Task<PlainEmailDto?> GetEmailBySubjectAsync(string address, string subject, int timeoutSeconds = 20)
         {
             var encodedAddress = Uri.EscapeDataString(address);
