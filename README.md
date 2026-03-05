@@ -1,6 +1,6 @@
 # EphemailClient
 
-**Лёгкий в использовании .NET-клиент для работы с временной почтой через [Ephemail API](https://ephemail.autos).**
+**Лёгкий в использовании .NET-клиент для работы с временной почтой через [Ephemail API](https://ephemail.space).**
 
 Получай письма, извлекай нужные данные, переходи по ссылкам — всё прямо из автотестов.
 
@@ -21,7 +21,7 @@ dotnet add package EphemailClient
 
 ```csharp
 Email.Epheapi
-    .UseEmail("qauser-1234@ephemail.autos")
+    .UseEmail("qauser-1234@ephemail.space")
     .Expect(Templates.WelcomeAsBroker(broker, admin))
     .Extract(out var password, EmailRegex.Password)
     .GotoLink("Get Started")
@@ -66,10 +66,10 @@ public static EmailTemplate WelcomeAsBroker(Broker broker, Admin admin)
 ## 📚 Документация
 
 Полный список возможностей и примеров использования:  
-👉 [https://ephemail.autos/docs/email-client](https://ephemail.autos/docs/email-client)
+👉 [https://ephemail.space/docs/email-client](https://ephemail.space/docs/email-client)
 
 API доступно по адресу:  
-🌐 `https://api.ephemail.autos`
+🌐 `https://api.ephemail.space`
 
 ---
 

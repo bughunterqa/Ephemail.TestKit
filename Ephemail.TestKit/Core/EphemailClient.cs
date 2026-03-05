@@ -16,7 +16,7 @@ namespace Ephemail.TestKit.Core
         {
             _http = new HttpClient
             {
-                BaseAddress = new Uri("https://api.ephemail.autos/")
+                BaseAddress = new Uri("https://api.ephemail.space/")
             };
         }
 
